@@ -20,7 +20,7 @@ require 'redmine'
 
 require_dependency 'multi_calendar_hooks'
 
-Rails.configuration.to_prepare do
+ActionDispatch::Callbacks.to_prepare do
   require_dependency 'principal'
   
   require_dependency 'calendars_controller'
