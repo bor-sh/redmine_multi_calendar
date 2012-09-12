@@ -56,7 +56,7 @@
                           
 
 
-                          <% form_for( :day_type, day, :url => {:controller => 'pattern_weeklies', :action => 'edit', :id => day}, :method => :post,
+                          <%= form_for( :day_type, :url => {:controller => 'pattern_weeklies', :action => 'edit', :id => day}, :method => :post,
       									:html => { :id => "member-#{day.id}-edit-form", :style => 'display:none;', :onsubmit => "return validate_form_day_type('member-#{day.id}-edit-form');"}) do |f| %>
 
                               <%= render :partial => 'pattern_weeklies/form', :locals => { :f => f, :id_day => "day_color#{day.id}"} %>
@@ -91,7 +91,7 @@
         <fieldset><legend class="m_label"><%= l(:mc_new_day_type)%></legend>
 
          
-        <% form_for( :day_type, @day_type, :url => {:controller => 'pattern_weeklies', :action => 'create'}, :html => { :method => :post, :onsubmit => "return validate_form_day_type('new_day_type');", :id => "new_day_type" }) do |f| %>
+        <%= form_for( :day_type, :url => {:controller => 'pattern_weeklies', :action => 'create'}, :html => { :method => :post, :onsubmit => "return validate_form_day_type('new_day_type');", :id => "new_day_type" }) do |f| %>
           
           <%= render :partial => 'pattern_weeklies/form', :locals => { :f => f, :id_day => "day_color_new"} %>
               

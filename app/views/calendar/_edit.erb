@@ -1,5 +1,5 @@
 <%= render :partial => 'calendar/error_multi_calendar' %>
-<% form_for @calendar, :url => { :action => "update", :id => @calendar.id }, :html => { :class => "m_form tabular"} do |f| %>
+<%= form_for @calendar, :url => { :action => "update", :id => @calendar.id }, :html => { :class => "m_form tabular"} do |f| %>
 <%= error_messages_for 'calendar' %>
       <div class="box">
         <p>          

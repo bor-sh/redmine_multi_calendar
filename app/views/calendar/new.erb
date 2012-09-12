@@ -3,8 +3,7 @@
 <h2><%=l(:mc_new_calendar)%></h2>
 <br/><br/>
 
-
-<% form_for @calendar, :url => { :controller => 'calendar', :action => @ac }, :html => { :class => "m_form tabular", :onsubmit => "return  validate_form_new_calendar();"} do |f| %>
+<%= form_for @calendar, :url => { :controller => 'calendar', :action => @ac }, :html => { :class => "m_form tabular", :onsubmit => "return  validate_form_new_calendar();"} do |f| %>
 <%= error_messages_for 'calendar' %>
      <div class="box">
         <p>
