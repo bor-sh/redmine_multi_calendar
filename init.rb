@@ -18,10 +18,9 @@
 
 require 'redmine'
 
-require 'dispatcher'
 require_dependency 'multi_calendar_hooks'
 
-Dispatcher.to_prepare :redmine_multi_calendar do
+Rails.configuration.to_prepare do
   require_dependency 'principal'
   
   require_dependency 'calendars_controller'
@@ -56,7 +55,6 @@ Dispatcher.to_prepare :redmine_multi_calendar do
 
 
 end
-
 
 Redmine::Plugin.register :redmine_multi_calendar do
   name 'Redmine Multi Calendar plugin'
