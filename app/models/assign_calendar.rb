@@ -25,7 +25,7 @@ class AssignCalendar < ActiveRecord::Base
   validates_presence_of :calendar_id, :user_id
   validates_numericality_of :calendar_id, :allow_nil => true, :message => :invalid
 
-  named_scope :user_have_calendar, lambda { |calendar_id| {:conditions => ["calendar_id = ?", calendar_id]} }
+  scope :user_have_calendar, lambda { |calendar_id| {:conditions => ["calendar_id = ?", calendar_id]} }
 
  def self.all_users
   self.assign_calendars_to_users(self.all)

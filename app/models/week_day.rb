@@ -22,7 +22,7 @@ class WeekDay < ActiveRecord::Base
   belongs_to :calendar
   belongs_to :pattern_weekly
 
-  named_scope :w_day, lambda { |d, calendar| { :conditions => { :dayname => d.wday, :calendar_id => calendar.id} } }
+  scope :w_day, lambda { |d, calendar| { :conditions => { :dayname => d.wday, :calendar_id => calendar.id} } }
 
    def self.type_day_for(d, calendar)
      begin
