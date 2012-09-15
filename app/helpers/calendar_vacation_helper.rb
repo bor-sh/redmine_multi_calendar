@@ -145,6 +145,9 @@ module CalendarVacationHelper
       end
     end unless last.wday == last_weekday
     cal << "</tr></tbody></table>"
+    #cal = "#{cal}".html_safe
+    #cal = "</tr></tbody></table>".html_safe
+    cal = cal.html_safe
   end
 
   private

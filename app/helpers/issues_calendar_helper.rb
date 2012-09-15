@@ -144,7 +144,7 @@ return my_page_vacations(day, vacations) if !project
              "#{month_name(target_month)}"
            end
 
-    m_calendar_link_to_month(('&#171; ' + name), target_year, target_month, m_calendar,  options)
+    m_calendar_link_to_month(('< ' + name), target_year, target_month, m_calendar,  options)
   end
 
   def m_calendar_link_to_next_month1(year, month, m_calendar, options={})
@@ -160,7 +160,7 @@ return my_page_vacations(day, vacations) if !project
              "#{month_name(target_month)}"
            end
 
-    m_calendar_link_to_month((name + ' &#187;'), target_year, target_month, m_calendar,  options)
+    m_calendar_link_to_month((name + ' >'), target_year, target_month, m_calendar,  options)
   end
 
   def m_calendar_link_to_month(link_name, year, month, m_calendar,  options={})

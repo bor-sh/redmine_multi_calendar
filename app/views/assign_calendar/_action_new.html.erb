@@ -1,4 +1,4 @@
- <%= users_assign_calendar = AssignCalendar.all_users_for_calendar(@calendar.id) %>
+ <% users_assign_calendar = AssignCalendar.all_users_for_calendar(@calendar.id) %>
   
 <div class="splitcontentleft">
 <% if users_assign_calendar.any? %>
@@ -11,7 +11,7 @@
         </thead>
 	<tbody>
           
-	<%= users_assign_calendar.each do |u| %>	
+	<% users_assign_calendar.each do |u| %>	
 	<tr id="user-<%= u.id %>" class="<%= cycle 'odd', 'even' %>">
             <td><%= u %></td>
             <td class="buttons">

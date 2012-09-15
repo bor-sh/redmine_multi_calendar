@@ -32,7 +32,7 @@
 <div class="splitcontentright">
 <% if calendars.any? %>
 <fieldset><legend><%=l(:mc_new_calendar)%></legend>
-<% remote_form_for(:calendar, :url => { :controller => 'assign_calendar', :action => 'add_calendar', :id => @user }) do %>
+<%= remote_form_for(:calendar, :url => { :controller => 'assign_calendar', :action => 'add_calendar', :id => @user }) do %>
 <%= select_tag 'calendars[calendar_id]', options_for_calendar_select( calendars) %>
 
 <p><%= submit_tag l(:button_add) %></p>

@@ -24,6 +24,6 @@ module AssignCalendarHelper
     users.sort.each do |user|
       s << "<label>#{ check_box_tag name, user.id, false, :class =>"select_all" } #{h user}</label><br/>"
     end
-    s
+    raw s    
   end
 end

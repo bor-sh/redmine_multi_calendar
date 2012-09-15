@@ -287,7 +287,7 @@
 
 <div class="splitcontentleft">
 <% i_holiday = 0 %>
-<% form_tag(  {:controller => "calendar_vacation", :action => "create", :id => @calendar.id}, :onsubmit => "return form_valid();") do %>
+<%= form_tag(  {:controller => "calendar_vacation", :action => "create", :id => @calendar.id}, :onsubmit => "return form_valid();") do %>
   <div class="apply" style='width: 590px;  clear:both;'>
     <div style="width:90px; float: left;" class="m_label"><%=l(:mc_date)%> </div>
     <div style="width:225px; float: left;" class="m_label"><%=l(:mc_holiday3)%></div>
@@ -326,13 +326,13 @@
 
  <div class="splitcontentright">
 
-             <% form_remote_tag  :url => {:controller => :calendar_vacation, :action => :show, :id => @calendar.id}, :html => {:id => "show_calendar"} do %>
+             <%= form_remote_tag  :url => {:controller => :calendar_vacation, :action => :show, :id => @calendar.id}, :html => {:id => "show_calendar"} do %>
 
               <%=l(:mc_display_year)%>: <%= select_year(@year, :start_year => Date.today.year-5, :end_year => Date.today.year+5) %>
               <input type="submit" value="Submit" id="submit_form_show_calendar" name="submit_form_show_calendar" style="display:none;" />
               <% end %>
 
-              <% form_tag (  {:controller => :calendar_vacation, :action => "duplicate", :id => @calendar.id }) do %>
+              <%= form_tag (  {:controller => :calendar_vacation, :action => "duplicate", :id => @calendar.id }) do %>
                   <input type="hidden" name="year" id="year_duplicate" value="<%= @year %>" />
                      <%=l(:mc_copy_to_year)%>:
                      <% if @year >= Date.today.year %>

@@ -39,7 +39,7 @@
             <div class="members box">
                     <h3><%=l(:label_member_plural)%></h3>
                     
-                    <%= @users_assign_calendar.sort.collect{|u| link_to_user u}.join(", ") %><br />
+                    <%= @users_assign_calendar.sort.collect{|u| link_to_user u}.join(", ").html_safe %><br />
                     
             </div>
 	<% end %>
