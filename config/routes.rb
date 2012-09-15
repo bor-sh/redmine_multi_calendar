@@ -17,7 +17,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 if Rails::VERSION::MAJOR >= 3
-  RedmineApp::Application.routes.draw do
     match 'calendars/:id/settings', :to => 'caledar#settings', :via => [:get, :post] #:controller => 'calendar', :action => 'settings'
     match 'calendars/:id/settings/:tab', :to => 'calendar#settings', :via => [:get, :post] #:controller => 'calendar', :action => 'settings'
     match 'calendars/:id/view', :to => 'calendar_vacation#show', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'show'
@@ -32,27 +31,26 @@ if Rails::VERSION::MAJOR >= 3
     match 'calendar/assign', :to => 'assign_calendar#add_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'add_calendar'
     match 'calendar/assign/create', :to => 'assign_calendar#create', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'create'
     match 'calendar/assign/autocomplete', :to => 'assign_calendar#autocomplete_for_assign_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'autocomplete_for_assign_calendar'
-    match 'calendar/assign/destroy', :to => 'assign_calendar#destroy', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'destroy'
+    match 'calendar/assign/destroy', :to => 'assign_calendar#destroy', :via => [:delete] #:controller => 'assign_calendar', :action => 'destroy'
     match 'calendar/assign/add', :to => 'assign_calendar#add_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'add_calendar' 
-    match 'calendar/assign/destroy_cal', :to => 'assign_calendar#destroy_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'destroy_calendar'
-    match 'calendar/destroy', :to => 'calendar#destroy', :via => [:get, :post] #:controller => 'calendar', :action => 'destroy'
-    match 'calendar/update', :to => 'calendar#update', :via => [:get, :post] #:controller => 'calendar', :action => 'update'
+    match 'calendar/assign/destroy_cal', :to => 'assign_calendar#destroy_calendar', :via => [:delete] #:controller => 'assign_calendar', :action => 'destroy_calendar'
+    match 'calendar/destroy', :to => 'calendar#destroy', :via => [:get] #:controller => 'calendar', :action => 'destroy'
+    match 'calendar/update', :to => 'calendar#update', :via => [:put] #:controller => 'calendar', :action => 'update'
     match 'calendar/settings', :to => 'calendar#settings', :via => [:get, :post] #:controller => 'calendar', :action => 'settings'
     match 'calendar/edit', :to => 'calendar#edit', :via => [:get, :post] #:controller => 'calendar', :action => 'edit'
-    match 'calendar/duplicate', :to => 'calendar#edit', :via => [:get, :post] #:controller => 'calendar', :action => 'edit'
+    match 'calendar/duplicate', :to => 'calendar#duplicate', :via => [:get, :post] #:controller => 'calendar', :action => 'edit'
     match 'calendar/vacation', :to => 'calendar_vacation#show', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'show'
     match 'calendar/vacation/list', :to => 'calendar_vacation#list_holidays', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'list_holidays'
     match 'calendar/vacation/create', :to => 'calendar_vacation#create', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'create'
-    match 'calendar/vacation/update', :to => 'calendar_vacation#update', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'update'
-    match 'calendar/vacation/destroy', :to => 'calendar_vacation#destroy', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'destroy'
+    match 'calendar/vacation/update', :to => 'calendar_vacation#update', :via => [:put] #:controller => 'calendar_vacation', :action => 'update'
+    match 'calendar/vacation/destroy', :to => 'calendar_vacation#destroy', :via => [:delete] #:controller => 'calendar_vacation', :action => 'destroy'
     match 'calendar/vacation/duplicate', :to => 'calendar_vacation#duplicate', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'duplicate'
     match 'calendar/weekly', :to => 'pattern_weeklies#index', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'index' 
     match 'calendar/weekly/create', :to => 'pattern_weeklies#create', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'create' 
     match 'calendar/weekly/edit', :to => 'pattern_weeklies#edit', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'edit' 
-    match 'calendar/weekly/destroy', :to => 'pattern_weeklies#destroy', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'destroy' 
+    match 'calendar/weekly/destroy', :to => 'pattern_weeklies#destroy', :via => [:delete] #:controller => 'pattern_weeklies', :action => 'destroy' 
     match 'calendar/week_days/edit', :to => 'week_days#edit', :via => [:get, :post] #:controller => 'week_days', :action => 'edit'
-    match 'calendar/week_days/update', :to => 'week_days#update', :via => [:get, :post] #:controller => 'week_days', :action => 'update'
-  end
+    match 'calendar/week_days/update', :to => 'week_days#update', :via => [:put] #:controller => 'week_days', :action => 'update'
 else
   ActionController::Routing::Routes.draw do |map|
     map.connect 'calendars/:id/settings', :controller => 'calendar', :action => 'settings'
