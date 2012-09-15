@@ -79,8 +79,8 @@
     settings: {
       opacity      : 0,
       overlay      : true,
-      loadingImage : '/plugin_assets/redmine_timeterminal/images/loading.gif',
-      closeImage   : '/plugin_assets/redmine_timeterminal/images/closelabel.gif',
+      loadingImage : '/plugin_assets/redmine_multi_calendar/images/loading.gif',
+      closeImage   : '/plugin_assets/redmine_multi_calendar/images/closelabel.gif',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
@@ -97,7 +97,7 @@
                 </div> \
                 <div class="footer"> \
                   <a href="#" class="close"> \
-                    <img src="/plugin_assets/redmine_timeterminal/images/closelabel.gif" title="close" class="close_image" /> \
+                    <img src="/plugin_assets/redmine_multi_calendar/images/closelabel.gif" title="close" class="close_image" /> \
                   </a> \
                 </div> \
               </td> \

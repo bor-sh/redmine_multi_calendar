@@ -1,21 +1,21 @@
 #facebox .b {
-  background:url(/plugin_assets/redmine_timeterminal/images/b.png);
+  background:url(/plugin_assets/redmine_multi_calendar/images/b.png);
 }
 
 #facebox .tl {
-  background:url(/plugin_assets/redmine_timeterminal/images/tl.png);
+  background:url(/plugin_assets/redmine_multi_calendar/images/tl.png);
 }
 
 #facebox .tr {
-  background:url(/plugin_assets/redmine_timeterminal/images/tr.png);
+  background:url(/plugin_assets/redmine_multi_calendar/images/tr.png);
 }
 
 #facebox .bl {
-  background:url(/plugin_assets/redmine_timeterminal/images/bl.png);
+  background:url(/plugin_assets/redmine_multi_calendar/images/bl.png);
 }
 
 #facebox .br {
-  background:url(/plugin_assets/redmine_timeterminal/images/br.png);
+  background:url(/plugin_assets/redmine_multi_calendar/images/br.png);
 }
 
 #facebox {
