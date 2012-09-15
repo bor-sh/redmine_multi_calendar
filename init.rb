@@ -18,54 +18,33 @@
 
 require 'redmine'
 
-require_dependency 'multi_calendar_hooks'
+require 'multi_calendar_hooks'
 
 ActionDispatch::Callbacks.to_prepare do
-  require_dependency 'principal'
-  
-  require_dependency 'calendars_controller'
-  require_dependency 'my_controller'
-  require_dependency 'users_helper'
-  require_dependency 'application_helper'
-
-  require_dependency 'multi_calendar_application_helper'
+  require 'principal'
+  require 'calendars_controller_patch'
+  require 'application_helper_patch'
+  require 'my_controller_patch'
+  require 'users_controller_patch'
+  require 'users_helper_patch'
   
   User.class_eval do
     has_one :assign_calendar,  :dependent => :destroy
   end
-
-
-
-
-  unless CalendarsController.included_modules.include? CalendarsControllerPatch
-    CalendarsController.send(:include, CalendarsControllerPatch)
-  end
-
-  unless ApplicationHelper.included_modules.include? MultiCalendarApplicationHelper
-     ApplicationHelper.send(:include, MultiCalendarApplicationHelper)
-  end
-
-  unless MyController.included_modules.include? MyControllerPatch
-    MyController.send(:include, MyControllerPatch)
-  end
-
-  unless UsersController.included_modules.include? UsersControllerPatch
-    UsersController.send(:include, UsersControllerPatch)
-  end
-
-
 end
 
 Redmine::Plugin.register :redmine_multi_calendar do
   name 'Redmine Multi Calendar plugin'
   author 'Yalagina Anna'
   description 'This is a plugin for Redmine'
-  version '0.0.1'
+  version '2.0.0'
 
-     menu :top_menu, 'calendar', { :controller => 'calendar', :action => 'index' },
-        {
-            :caption => 'Calendars',
-            :if => Proc.new { User.current.admin }
-        }
+  requires_redmine :version_or_higher => '2.0.0'
+
+  menu :top_menu, 'calendar', { :controller => 'calendar', :action => 'index' },
+  {
+      :caption => 'Calendars',
+      :if => Proc.new { User.current.admin }
+  }
 
 end

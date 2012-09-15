@@ -17,41 +17,50 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 require_dependency 'calendars_controller'
-module CalendarsControllerPatch
-  def self.included(base) # :nodoc:
-    base.extend(ClassMethods)
 
-    base.send(:include, InstanceMethods)
-
-    # Same as typing in the class
-    base.class_eval do
-      unloadable # Send unloadable so it will not be unloaded in development
-      alias_method_chain :show, :m_calendar_show
-    end
-
+class CalendarsController
+  module Patches
+    module CalendarsControllerPatch
+      def self.included(base) # :nodoc:
+        base.extend(ClassMethods)
+    
+        base.send(:include, InstanceMethods)
+    
+        # Same as typing in the class
+        base.class_eval do
+          unloadable # Send unloadable so it will not be unloaded in development
+          #alias_method_chain :show, :m_calendar_show
+        end
+    
+      end
+    
+      module ClassMethods
+    
+      end
+    
+      module InstanceMethods
+        def show_with_m_calendar_show
+         # show_without_m_calendar_show
+          puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+          puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+          puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+               begin        
+               @one_calendar = false           
+               @one_calendar = User.current.assign_calendar.calendar_id  if params[:m_calendar] == nil && User.current.assign_calendar && User.current.assign_calendar.one_calendar
+               @one_calendar = params[:m_calendar] if params[:m_calendar] != nil && params[:m_calendar] != false
+               
+               rescue => err
+                 puts err
+                 
+               end
+               
+        show_without_m_calendar_show
+        end
+      end
+    end    
   end
+end
 
-  module ClassMethods
-
-  end
-
-  module InstanceMethods
-    def show_with_m_calendar_show
-     # show_without_m_calendar_show
-      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-           begin        
-           @one_calendar = false           
-           @one_calendar = User.current.assign_calendar.calendar_id  if params[:m_calendar] == nil && User.current.assign_calendar && User.current.assign_calendar.one_calendar
-           @one_calendar = params[:m_calendar] if params[:m_calendar] != nil && params[:m_calendar] != false
-           
-           rescue => err
-             puts err
-             
-           end
-           
-    show_without_m_calendar_show
-    end
-  end
+unless CalendarsController.included_modules.include? CalendarsController::Patches::CalendarsControllerPatch
+    CalendarsController.send(:include, CalendarsController::Patches::CalendarsControllerPatch)
 end

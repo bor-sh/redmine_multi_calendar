@@ -16,42 +16,55 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-require_dependency 'my_controller'
-module MyControllerPatch
-  def self.included(base) # :nodoc:
-    base.extend(ClassMethods)
+require 'my_controller'
 
-    base.send(:include, InstanceMethods)
-
-    # Same as typing in the class
-    base.class_eval do
-      unloadable # Send unloadable so it will not be unloaded in development
-      alias_method_chain :account, :m_calendar
-    end
-
-  end
-
-  module ClassMethods
-
-  end
-
-  module InstanceMethods
-    def account_with_m_calendar
-      # account_without_m_calendar
-       
-       begin
-         
-           if User.current.assign_calendar && params[:m_calendar]
-             User.current.assign_calendar.one_calendar = params[:m_calendar]
+class MyController
+  module Patches
+    module MyControllerPatch
+      def self.included(base) # :nodoc:
+        base.extend(ClassMethods)
+    
+        base.send(:include, InstanceMethods)
+    
+        # Same as typing in the class
+        base.class_eval do
+          unloadable # Send unloadable so it will not be unloaded in development
+          
+          helper :all
+          
+          alias_method_chain :account, :m_calendar
+        end
+    
+      end
+    
+      module ClassMethods
+    
+      end
+    
+      module InstanceMethods
+        
+        def account_with_m_calendar
+          # account_without_m_calendar
+           
+           begin
              
-             User.current.assign_calendar.save
+               if User.current.assign_calendar && params[:m_calendar]
+                 User.current.assign_calendar.one_calendar = params[:m_calendar]
+                 
+                 User.current.assign_calendar.save
+                 
+               end
+            rescue => err
+             puts err
              
            end
-        rescue => err
-         puts err
-         
-       end
-       account_without_m_calendar
+           account_without_m_calendar
+        end
+      end
     end
   end
+end
+
+unless MyController.included_modules.include? MyController::Patches::MyControllerPatch
+    MyController.send(:include, MyController::Patches::MyControllerPatch)
 end

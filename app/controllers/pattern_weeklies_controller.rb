@@ -19,6 +19,7 @@
 class PatternWeekliesController < ApplicationController
   unloadable
 
+  helper :all
   before_filter :check_user
  
 

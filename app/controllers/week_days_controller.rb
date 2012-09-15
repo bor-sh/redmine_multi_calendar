@@ -19,6 +19,8 @@
 class WeekDaysController < ApplicationController
   unloadable
 
+  helper :all
+
   def edit
   end
 

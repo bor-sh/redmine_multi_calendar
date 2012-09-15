@@ -20,6 +20,8 @@
 class AssignCalendarController < ApplicationController
   unloadable
 
+  helper :all
+
   before_filter :check_user
   before_filter :find_calendar, :only => [:new]
 

@@ -19,6 +19,8 @@
 class CalendarController < ApplicationController
   unloadable
 
+  helper :all
+
   menu_item :settings, :only => :settings
 
   before_filter :check_user

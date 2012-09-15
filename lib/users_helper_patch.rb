@@ -16,33 +16,39 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-require_dependency 'users_helper'
+require 'users_helper'
 
- module UsersHelperPatch
+module UsersHelper
+  module Patches
+    module UsersHelperPatch
+       def self.included(base)
+           base.extend(ClassMethods)
+            base.send(:include, InstanceMethods)
+            base.class_eval do
+                unloadable
+                alias_method_chain :user_settings_tabs, :plugin
+           end
+       end
+  
+       module ClassMethods
+       end
+  
+       module InstanceMethods
+  
+          def user_settings_tabs_with_plugin
+              tabs = user_settings_tabs_without_plugin
+              tabs.push({ :name => 'assign_calendar',
+                           :action => :new_assign_calendar,
+                           :partial => 'assign_calendar/new_assign_calendar',
+                           :label => :label_members_calendar })
+               return tabs
+           end
+  
+       end
+    end    
+  end
+end
 
-     def self.included(base)
-         base.extend(ClassMethods)
-          base.send(:include, InstanceMethods)
-          base.class_eval do
-              unloadable
-             alias_method_chain :user_settings_tabs, :plugin
-         end
-     end
-
-     module ClassMethods
-     end
-
-     module InstanceMethods
-
-        def user_settings_tabs_with_plugin
-            tabs = user_settings_tabs_without_plugin
-            tabs.push({ :name => 'assign_calendar',
-                         :action => :new_assign_calendar,
-                         :partial => 'assign_calendar/new_assign_calendar',
-                         :label => :label_members_calendar })
-             return tabs
-         end
-
-     end
-
- end
+unless UsersHelper.included_modules.include? UsersHelper::Patches::UsersHelperPatch
+    UsersHelper.send(:include, UsersHelper::Patches::UsersHelperPatch)
+end

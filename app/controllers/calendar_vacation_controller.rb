@@ -19,6 +19,8 @@
 class CalendarVacationController < ApplicationController
   unloadable
 
+  helper :all
+
   before_filter :check_user
   before_filter :find_calendar, :only => [:list_holidays, :show, :create, :update]
 

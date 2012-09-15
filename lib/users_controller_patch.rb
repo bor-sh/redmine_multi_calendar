@@ -16,44 +16,53 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-require_dependency 'users_controller'
-module UsersControllerPatch
-  def self.included(base) # :nodoc:
-    base.extend(ClassMethods)
+require 'users_controller'
 
-    base.send(:include, InstanceMethods)
-
-    # Same as typing in the class
-    base.class_eval do
-      unloadable # Send unloadable so it will not be unloaded in development
-      alias_method_chain :update, :m_calendar
-    end
-
-  end
-
-  module ClassMethods
-
-  end
-
-  module InstanceMethods
-    def update_with_m_calendar
-      # account_without_m_calendar
-
-
-       begin
-         
-           if @user.assign_calendar && params[:m_calendar]
-             @user.assign_calendar.one_calendar = params[:m_calendar]
+class UsersController
+  module Patches
+    module UsersControllerPatch
+      def self.included(base) # :nodoc:
+        base.extend(ClassMethods)
+    
+        base.send(:include, InstanceMethods)
+    
+        # Same as typing in the class
+        base.class_eval do
+          unloadable # Send unloadable so it will not be unloaded in development
+          alias_method_chain :update, :m_calendar
+        end
+    
+      end
+    
+      module ClassMethods
+    
+      end
+    
+      module InstanceMethods
+        def update_with_m_calendar
+          # account_without_m_calendar
+    
+    
+           begin
              
-             @user.assign_calendar.save
+               if @user.assign_calendar && params[:m_calendar]
+                 @user.assign_calendar.one_calendar = params[:m_calendar]
+                 
+                 @user.assign_calendar.save
+                 
+               end
+            rescue => err
+             puts err
              
            end
-        rescue => err
-         puts err
-         
-       end
-
-       update_without_m_calendar
+    
+           update_without_m_calendar
+        end
+      end
     end
   end
+end
+
+unless UsersController.included_modules.include? UsersController::Patches::UsersControllerPatch
+    UsersController.send(:include, UsersController::Patches::UsersControllerPatch)
 end
