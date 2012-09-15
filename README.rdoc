@@ -1,3 +1,19 @@
-= multi_calendar
+= Info =
 
-Description goes here
+This is a fork. Works on redmine 2.0.3.
+
+= multi_calendar = 
+
+*Attention*
+
+Beta
+
+*Instalation*
+  1.- Install Redmine (http://www.redmine.org/wiki/1/RedmineInstall)
+  2.- Get the plugin and install
+    $> cd $REDMINE_PATH/plugins
+    $> git clone git://github.com/mkinski/redmine_multi_calendar.git
+    $> rake redmine:plugins:migrate RAILS_ENV=production
+  3.- Restart your server and enjoy! :D
+
+
