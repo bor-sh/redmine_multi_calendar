@@ -43,7 +43,7 @@ Redmine::Plugin.register :redmine_multi_calendar do
 
   menu :top_menu, 'calendar', { :controller => 'calendar', :action => 'index' },
   {
-      :caption => 'Calendars',
+      :caption => :mc_calendars,
       :if => Proc.new { User.current.admin }
   }
 
