@@ -22,8 +22,8 @@ require 'multi_calendar_hooks'
 
 ActionDispatch::Callbacks.to_prepare do
   require 'principal'
-  require 'calendars_controller_patch'
   require 'application_helper_patch'
+  require 'calendars_controller_patch'
   require 'my_controller_patch'
   require 'users_controller_patch'
   require 'users_helper_patch'
