@@ -31,7 +31,7 @@ if Rails::VERSION::MAJOR >= 3
     match 'calendar/assign', :to => 'assign_calendar#add_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'add_calendar'
     match 'calendar/assign/create', :to => 'assign_calendar#create', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'create'
     match 'calendar/assign/autocomplete', :to => 'assign_calendar#autocomplete_for_assign_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'autocomplete_for_assign_calendar'
-    match 'calendar/assign/destroy', :to => 'assign_calendar#destroy', :via => [:delete] #:controller => 'assign_calendar', :action => 'destroy'
+    match 'calendar/assign/destroy', :to => 'assign_calendar#destroy', :via => [:delete, :post] #:controller => 'assign_calendar', :action => 'destroy'
     match 'calendar/assign/add', :to => 'assign_calendar#add_calendar', :via => [:get, :post] #:controller => 'assign_calendar', :action => 'add_calendar' 
     match 'calendar/assign/destroy_cal', :to => 'assign_calendar#destroy_calendar', :via => [:delete] #:controller => 'assign_calendar', :action => 'destroy_calendar'
     match 'calendar/destroy', :to => 'calendar#destroy', :via => [:get] #:controller => 'calendar', :action => 'destroy'
