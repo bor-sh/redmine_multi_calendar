@@ -19,6 +19,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AssignCalendarTest < ActiveSupport::TestCase
+  self.fixture_path = File.dirname(__FILE__) + "/../fixtures/"
+  
   fixtures :assign_calendars
 
   # Replace this with your real tests.

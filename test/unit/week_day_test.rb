@@ -19,6 +19,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class WeekDayTest < ActiveSupport::TestCase
+  self.fixture_path = File.dirname(__FILE__) + "/../fixtures/"
+  
   fixtures :week_days
 
   # Replace this with your real tests.
