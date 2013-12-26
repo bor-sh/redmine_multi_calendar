@@ -78,17 +78,22 @@ class AssignCalendarController < ApplicationController
 
 
   def destroy
-    @calendar = Calendar.find(params[:calendar_id])
-    assign_calendar = AssignCalendar.find_by_user_id(params[:user_id])
+    @calendar = Calendar.find(params[:calendar_id]) # TODO: SQL-Injection?
+    @a_calendar = @calendar
+    assign_calendar = AssignCalendar.find_by_user_id(params[:user_id]) # TODO: SQL-Injection?
     if assign_calendar
       assign_calendar.destroy
     end
     respond_to do |format|
-        format.html { redirect_to :controller => "calendar", :action => "settings", :id => @calendar.id, :tab => 'calendar_view' }
+        format.html {
+          redirect_to :controller => "calendar",
+                      :action => "settings",
+                      :id => @calendar.id,
+                      :tab => 'calendar_view'
+        }
+
         format.js {
-          render(:update) {|page|
-            page.replace_html "action_new", :partial => 'action_new'
-          }
+          render :partial => 'action_new'
         }
     end
   end
