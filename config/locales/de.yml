@@ -1,6 +1,5 @@
 # English strings go here for Rails i18n
 de:
-  my_label: "Meine Bezeichnung"
   edit_calendar: "Information "
   calendar_view: "Kalenderansicht"
   members: "Mitglieder"
