@@ -27,18 +27,18 @@ class AssignCalendarController < ApplicationController
 
   def new
 
-    @a_calendar = AssignCalendar.new(:calendar_id =>  @calendar.id)
+    @calendar_assignment = AssignCalendar.new(:calendar_id =>  @calendar.id)
   end
 
   def create
     @calendar = Calendar.find(params[:id])
-    @a_calendar = @calendar
+    @calendar_assignment = @calendar
     if params[:users_for_calendar]
         attrs = params[:users_for_calendar].dup
         if (user_ids = attrs.delete(:user_ids))
             user_ids.each do |user_id|
-              a_calendar = AssignCalendar.new(:user_id => user_id, :calendar_id =>  @calendar.id)
-              a_calendar.save
+              calendar_assignment = AssignCalendar.new(:user_id => user_id, :calendar_id =>  @calendar.id)
+              calendar_assignment.save
               puts attrs.merge(:user_id => user_id)
 
             end
@@ -79,10 +79,9 @@ class AssignCalendarController < ApplicationController
 
   def destroy
     @calendar = Calendar.find(params[:calendar_id]) # TODO: SQL-Injection?
-    @a_calendar = @calendar
-    assign_calendar = AssignCalendar.find_by_user_id(params[:user_id]) # TODO: SQL-Injection?
-    if assign_calendar
-      assign_calendar.destroy
+    @calendar_assignment = AssignCalendar.find_by_user_id(params[:user_id]) # TODO: SQL-Injection?
+    if @calendar_assignment
+      @calendar_assignment.destroy
     end
     respond_to do |format|
         format.html {
@@ -100,12 +99,12 @@ class AssignCalendarController < ApplicationController
 
 
   def add_calendar
-   a_calendar = AssignCalendar.new(:user_id => params[:id], :calendar_id =>  params[:calendars][:calendar_id])
-   a_calendar.save if request.post?
+   calendar_assignment = AssignCalendar.new(:user_id => params[:id], :calendar_id =>  params[:calendars][:calendar_id])
+   calendar_assignment.save if request.post?
 
     @user = User.find(params[:id])
      respond_to do |format|
-       if a_calendar.valid?
+       if calendar_assignment.valid?
 
         # format.html { redirect_to :back }
          format.html { redirect_to :controller => 'users', :action => 'edit', :id => params[:id], :tab => 'assign_calendar' }
@@ -119,7 +118,7 @@ class AssignCalendarController < ApplicationController
        else
          format.js {
            render(:update) {|page|
-              page.alert(l(:notice_failed_to_save_calendar, :errors => a_calendar.errors.full_messages.join(', ')))
+              page.alert(l(:notice_failed_to_save_calendar, :errors => calendar_assignment.errors.full_messages.join(', ')))
             }
          }
        end
