@@ -46,10 +46,7 @@ class AssignCalendarController < ApplicationController
          end
      end
 
-     respond_to do |format|
-        puts 'JS-Format: ' + format.js.inspect
-        puts 'HTML-Format: ' + format.js.inspect
-      
+     respond_to do |format|      
         format.html {
           redirect_to :controller => "calendar",
                       :action => "settings",
