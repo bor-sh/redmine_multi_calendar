@@ -32,6 +32,7 @@ class AssignCalendarController < ApplicationController
 
   def create
     @calendar = Calendar.find(params[:id])
+    @a_calendar = @calendar
     if params[:users_for_calendar]
         attrs = params[:users_for_calendar].dup
         if (user_ids = attrs.delete(:user_ids))
@@ -46,11 +47,17 @@ class AssignCalendarController < ApplicationController
      end
 
      respond_to do |format|
-        format.html { redirect_to :controller => "calendar", :action => "settings", :id => @calendar.id, :tab => 'calendar_view' }
+        puts 'JS-Format: ' + format.js.inspect
+        puts 'HTML-Format: ' + format.js.inspect
+      
+        format.html {
+          redirect_to :controller => "calendar",
+                      :action => "settings",
+                      :id => @calendar.id,
+                      :tab => 'calendar_view'
+        }
         format.js {
-          render(:update) {|page|
-            page.replace_html "action_new", :partial => 'action_new'
-          }
+          render :partial => 'action_new'
         }
     end
 

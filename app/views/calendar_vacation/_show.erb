@@ -326,7 +326,7 @@
 
  <div class="splitcontentright">
 
-             <%= form_remote_tag  :url => {:controller => :calendar_vacation, :action => :show, :id => @calendar.id}, :html => {:id => "show_calendar"} do %>
+             <%= form_tag :remote => true, :url => {:controller => :calendar_vacation, :action => :show, :id => @calendar.id}, :html => {:id => "show_calendar"} do %>
 
               <%=l(:mc_display_year)%>: <%= select_year(@year, :start_year => Date.today.year-5, :end_year => Date.today.year+5) %>
               <input type="submit" value="Submit" id="submit_form_show_calendar" name="submit_form_show_calendar" style="display:none;" />
