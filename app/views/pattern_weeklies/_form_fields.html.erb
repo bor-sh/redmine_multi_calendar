@@ -1,0 +1,31 @@
+<%
+  # Renders the fields for a form to either edit or create a daytype.
+  # Parameters:
+  #  * f:              The form to use
+  #  * prefill_values: the values to prefill the fields with (optional)
+%>
+
+<%
+  if (defined? prefill_values).nil? then
+    prefill_values = {}
+  end
+%>
+
+<ol>
+  <li class="name">
+    <%= f.label :name, "#{l(:mc_name2)} " %><span class="required"> *</span>
+    <%= f.text_field :name, :required => "required", :value => prefill_values[:name] %>
+  </li>
+  <li class="color">
+    <%= f.label :color, "#{l(:mc_color)} " %><span class="required"> *</span>
+    <%= f.text_field :color, :required => "required", :value => prefill_values[:color], :class => "iColorPicker" %>
+  </li>
+  <li class="duration">
+    <%= f.label :duration, "#{l(:mc_duration)} " %><span class="required"> *</span>
+    <%= f.text_field :duration, :required => "required", :value => prefill_values[:duration] %>
+  </li>
+  <li class="default">
+    <%= f.label :show_default, "#{l(:mc_default)} " %>
+    <%= f.check_box :show_default, :value => prefill_values[:show_default] %>
+  </li>
+</ol>

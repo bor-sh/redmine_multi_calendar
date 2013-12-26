@@ -1,0 +1,42 @@
+<%
+  # Renders one day type.
+  # Parameters:
+  #  * f:       The form this is enclosed in
+  #  * daytype: The day type to render.
+%>
+
+<div id="daytype-<%= daytype.id %>" class="daytype <%= cycle('odd', 'even') %>">
+  <div class="display">
+    <span class="name"><%= daytype.name %></span>
+    <span class="default"><%= checked_image daytype.show_default %></span>
+    <span class="color" style="background-color: <%= daytype.color %>;"><%= daytype.color %></span>
+    <span class="duration"><%= "%0.2f #{l(:mc_duration_hours)}" % daytype.duration  %></span>
+    <span class="buttons">
+      <%= link_to_function l(:button_edit), "", :class => 'edit-button icon icon-edit' %>
+      <% if !daytype.deft && daytype.week_days.empty? && daytype.calendar_vacations.empty? %>
+
+        <%= link_to l(:mc_delete2), { :controller => "pattern_weeklies",  :id => daytype.id, :calendar_id => @calendar.id,  :action => "destroy"}, :method => :delete,  :confirm => "Are you sure you want to delete it?", :class => 'icon icon-delete' %>
+
+      <% end %>
+    </span>
+  </div>
+  <div class="edit">
+    <%= form_for( :day_type,
+                  :url => {
+                    :controller => 'pattern_weeklies',
+                    :action => 'update',
+                    :id => daytype.id
+                  },
+                  :method => :post,
+                  :remote => true) do |f| %>
+      <%= render :partial => 'pattern_weeklies/form_fields',
+                 :locals => {
+                    :f => f,
+                    :prefill_values => daytype
+                 } %>
+    
+      <%= f.submit l(:mc_daytype_edit_submit), :class => "submit" %>
+      <%= link_to_function l(:mc_daytype_edit_cancel), "", :class => "cancel" %>
+    <% end %>
+  </div>
+</div>

@@ -32,13 +32,11 @@ class PatternWeekliesController < ApplicationController
     redirect_to :controller => "calendar", :action => "settings", :id => params[:day_type][:calendar_id], :tab => 'day_type'
   end
 
-  def edit
+  def update
     day_type = PatternWeekly.find(params[:id])
     day_type.update_attributes(params[:day_type])
-    redirect_to :controller => "calendar", :action => "settings", :id => params[:day_type][:calendar_id], :tab => 'day_type'
+    redirect_to :controller => "calendar", :action => "settings", :id => day_type.calendar, :tab => 'day_type'
   end
-
-
 
   def destroy
     day_type = PatternWeekly.find_by_id(params[:id])

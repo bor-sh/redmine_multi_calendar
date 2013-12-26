@@ -26,6 +26,7 @@ class MultiCalendarHooks < Redmine::Hook::ViewListener
       css_calendar = stylesheet_link_tag 'blue.css', :plugin => 'redmine_multi_calendar'
       css_calendar_facebox = stylesheet_link_tag 'facebox.css', :plugin => 'redmine_multi_calendar'
       css_multi_calendar = stylesheet_link_tag 'multi_calendar.css', :plugin => 'redmine_multi_calendar'
+      css_daytype = stylesheet_link_tag 'daytype.css', :plugin => 'redmine_multi_calendar'
 
     
 
@@ -43,9 +44,10 @@ class MultiCalendarHooks < Redmine::Hook::ViewListener
       snippet += javascript_include_tag 'facebox.js', :plugin => 'redmine_multi_calendar'
       snippet += javascript_include_tag 'iColorPicker.js', :plugin => 'redmine_multi_calendar'
       snippet += javascript_include_tag 'multi_calendar.js', :plugin => 'redmine_multi_calendar'
+      snippet += javascript_include_tag 'daytype.js', :plugin => 'redmine_multi_calendar'
       
       
-      snippet = snippet + css_calendar + css_calendar_facebox + css_multi_calendar #+ css_tool_tip
+      snippet = snippet + css_calendar + css_calendar_facebox + css_multi_calendar + css_daytype
       
         return snippet
 
