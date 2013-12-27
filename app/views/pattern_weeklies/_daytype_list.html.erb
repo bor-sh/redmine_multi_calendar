@@ -1,0 +1,9 @@
+<%
+  # Renders the list of day types
+  # Parameters:
+  #  * daytypes: The list of daytypes to display
+%>
+
+<% daytypes.each do |daytype| %>
+  <%= render :partial => 'pattern_weeklies/daytype', :locals => {:daytype => daytype} %>
+<% end %>

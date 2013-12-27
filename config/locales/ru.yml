@@ -1,6 +1,5 @@
 # English strings go here for Rails i18n
 ru:
-  my_label: "Моё обозначение"
   edit_calendar: "Nнформация "
   calendar_view: "Взгляд на Календарь"
   members: "Пользователи"

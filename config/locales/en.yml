@@ -1,6 +1,5 @@
 # English strings go here for Rails i18n
 en:
-  my_label: "My label"
   edit_calendar: "Information "
   calendar_view: "Calendar view"
   members: "Members"
@@ -60,8 +59,13 @@ en:
   mc_year: "Year"
   mc_display_calendar: "Display calendar"
   mc_name2: "Name"
-  mc_color: "Color "
-  mc_duration: "Duration "
+  mc_color: "Color"
+  mc_duration: "Duration"
+  mc_buttons: ""
+  mc_duration_hours: "hours"
+  mc_default: "default"
+  mc_daytype_edit_submit: "update"
+  mc_daytype_edit_cancel: "cancel"
   mc_color_is_invalid: "Color is invalid"
   mc_hours: "hours"
   mc_type: "Type"

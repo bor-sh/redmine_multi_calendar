@@ -71,7 +71,7 @@ class CalendarController < ApplicationController
     end
     @copy_to_year = (params[:copy_to_year] ? params[:copy_to_year].to_i : @year)
 
-    @a_calendar = AssignCalendar.new(:calendar_id =>  @calendar.id)
+    @calendar_assignment = AssignCalendar.new(:calendar_id =>  @calendar.id)
     @day_type = PatternWeekly.new(:calendar_id =>  @calendar.id, :color => "#fbaf5a")
 
 

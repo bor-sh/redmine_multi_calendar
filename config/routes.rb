@@ -47,7 +47,7 @@ if Rails::VERSION::MAJOR >= 3
     match 'calendar/vacation/duplicate', :to => 'calendar_vacation#duplicate', :via => [:get, :post] #:controller => 'calendar_vacation', :action => 'duplicate'
     match 'calendar/weekly', :to => 'pattern_weeklies#index', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'index' 
     match 'calendar/weekly/create', :to => 'pattern_weeklies#create', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'create' 
-    match 'calendar/weekly/edit', :to => 'pattern_weeklies#edit', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'edit' 
+    match 'calendar/weekly/update', :to => 'pattern_weeklies#update', :via => [:get, :post] #:controller => 'pattern_weeklies', :action => 'edit' 
     match 'calendar/weekly/destroy', :to => 'pattern_weeklies#destroy', :via => [:delete] #:controller => 'pattern_weeklies', :action => 'destroy' 
     match 'calendar/week_days/edit', :to => 'week_days#edit', :via => [:get, :post] #:controller => 'week_days', :action => 'edit'
     match 'calendar/week_days/update', :to => 'week_days#update', :via => [:put] #:controller => 'week_days', :action => 'update'
