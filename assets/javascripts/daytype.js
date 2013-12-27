@@ -7,7 +7,7 @@ function multicalendar_daytype_editend(row_id) {
     jQuery('#' + row_id + ' .edit').hide();
 };
 
-jQuery(document).ready(function() {
+function multicalendar_register_daytype_functions() {
     jQuery('.controller-calendar.action-settings .daytype').each(function() {
         
         var $row = jQuery(this);
@@ -21,4 +21,6 @@ jQuery(document).ready(function() {
             multicalendar_daytype_edit(row_id);
         });
     });
-});
+};
+
+jQuery(document).ready(multicalendar_register_daytype_functions);

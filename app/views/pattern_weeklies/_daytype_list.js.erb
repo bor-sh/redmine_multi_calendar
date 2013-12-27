@@ -1,0 +1,11 @@
+<%
+  # Generates a JavaScript that updates the daytypes list in the daytypes tab.
+  # Parameters:
+  #  * daytypes: The daytypes to render.
+%>
+
+jQuery('.controller-calendar.action-settings .daytypes .list').html(
+  "<%= escape_javascript(render :partial => 'daytype_list.html.erb', :locals => {:daytypes => daytypes.sort_by(&:name)}) %>"
+);
+
+multicalendar_register_daytype_functions();

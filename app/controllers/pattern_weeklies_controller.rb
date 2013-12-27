@@ -35,7 +35,18 @@ class PatternWeekliesController < ApplicationController
   def update
     day_type = PatternWeekly.find(params[:id])
     day_type.update_attributes(params[:day_type])
-    redirect_to :controller => "calendar", :action => "settings", :id => day_type.calendar, :tab => 'day_type'
+
+    respond_to do |format|      
+      format.html {
+        redirect_to :controller => "calendar",
+                    :action => "settings",
+                    :id => day_type.calendar,
+                    :tab => 'day_type'
+      }
+      format.js {
+        render :partial => 'daytype_list', :locals => {:daytypes => day_type.calendar.pattern_weeklies}
+      }
+    end
   end
 
   def destroy

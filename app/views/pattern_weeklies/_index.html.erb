@@ -27,24 +27,17 @@
 
 </script>
 
-
-<div class="splitcontentleft">
-  <table class="list issues">
-    <thead>
-      <tr>
-        <th class="checkbox hide-when-print">Name</th>
-        <th><%= l(:mc_default_value)%></th>
-        <th><%= l(:mc_color)%></th>
-        <th><%= l(:mc_duration)%></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @calendar.pattern_weeklies.sort_by(&:name).each do |day| %>
-        <%= render :partial => 'pattern_weeklies/daytype', :locals => {:daytype => day} %>
-      <% end %>
-    </tbody>
-  </table>
+<div class="splitcontentleft daytypes">
+  <div class="headers">
+    <span class="name"><%= l(:mc_name2) %></span>
+    <span class="default"><%= l(:mc_default_value) %></span>
+    <span class="color"><%= l(:mc_color) %></span>
+    <span class="duration"><%= l(:mc_duration) %></span>
+    <span class="buttons"><%= l(:mc_buttons) %></span>
+  </div>
+  <div class="list">
+    <%= render :partial => 'pattern_weeklies/daytype_list', :locals => {:daytypes => @calendar.pattern_weeklies.sort_by(&:name)} %>
+  </div>
 </div>
 
 <div class="splitcontentright">
